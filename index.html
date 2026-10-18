@@ -1,0 +1,1398 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웨딩 현수막 견적 계산기 & 미리보기</title>
+    <meta name="description" content="탐모라 웨딩 현수막 사이즈별 자동 견적 계산 및 21종 디자인 템플릿, 마감 방식, 스탠딩 배너 추가 옵션 실시간 미리보기" />
+    <meta property="og:title" content="웨딩 현수막 견적 계산기 & 미리보기" />
+    <meta property="og:description" content="탐모라 웨딩 현수막 사이즈별 자동 견적 계산 및 21종 디자인 템플릿, 마감 방식, 스탠딩 배너 추가 옵션 실시간 미리보기" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              accent: '#A64B5A',
+              ink: '#1A1918',
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- 자체 포함 통합 스타일 및 애니메이션 -->
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #1A1918;
+        --accent: #A64B5A;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #ffffff;
+        color: #1A1918;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-serif-cormorant { font-family: 'Cormorant Garamond', Georgia, serif; }
+      .font-mono-space { font-family: 'Space Mono', 'Courier New', monospace; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadeIn { animation: fadeIn 0.25s ease-out forwards; }
+      @keyframes bounceBubble {
+        0%, 100% { transform: translate(-50%, 0); }
+        50% { transform: translate(-50%, -6px); }
+      }
+      .animate-bubble { animation: bounceBubble 1.2s infinite ease-in-out; }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  </head>
+  <body class="bg-[#ffffff] text-[#1A1918] antialiased selection:bg-[#A64B5A] selection:text-white min-h-screen flex flex-col">
+    <!-- 앱 메인 컨테이너 -->
+    <div id="app" class="flex-1 flex flex-col"></div>
+
+    <!-- 하단 고객센터 안내 Footer -->
+    <footer class="bg-stone-100/90 border-t border-stone-200/80 py-10 px-4 sm:px-8 mt-auto">
+      <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 text-center sm:text-left">
+        <div class="space-y-1.5">
+          <div class="text-[17px] font-bold text-[#1A1918] tracking-tight">
+            탐모라 웨딩 현수막
+          </div>
+          <p class="text-[14px] text-[#1A1918]/60">
+            웨딩 현수막 &amp; 맞춤 스탠딩 배너 실시간 자동 견적 계산 시스템
+          </p>
+        </div>
+
+        <div class="space-y-1 text-center sm:text-left shrink-0">
+          <div class="text-[13px] font-bold text-[#A64B5A] flex items-center justify-center sm:justify-start gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>고객센터 안내</span>
+          </div>
+          <div class="text-[15px] font-bold text-[#1A1918] flex items-center justify-center sm:justify-start gap-1.5">
+            <svg class="w-4 h-4 text-[#1A1918]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>평일 09:00 - 18:00 (주말·공휴일 휴무)</span>
+          </div>
+          <div class="text-[14px] text-[#1A1918]/75 flex items-center justify-center sm:justify-start gap-1.5">
+            <svg class="w-4 h-4 text-[#1A1918]/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>카카오톡 채널: <strong>탐모라</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto mt-6 pt-4 border-t border-stone-200/60 text-center text-[12px] text-[#1A1918]/40">
+        © 탐모라 웨딩. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- 모달 컨테이너 -->
+    <div id="modal-container"></div>
+
+    <!-- 통합 순수 자바스크립트 엔진 (외부 빌드 없이 100% 단독 실행) -->
+    <script>
+      // 21종 템플릿 데이터
+      const TEMPLATES = [
+        { id: 1, title: '01. 로맨틱 블러쉬 로즈', tag: '로맨틱 파스텔', bgColor: '#FFF7F5', accentColor: '#D98282', textColor: '#4A3434', subTextColor: '#8C6868', headline: '두 사람이 하나 되는 가장 눈부신 날', subheadline: 'SWEET WEDDING DAY • 우리의 새로운 시작' },
+        { id: 2, title: '02. 클래식 골드 엠블럼', tag: '호텔 & 럭셔리', bgColor: '#FAF7F0', accentColor: '#C49B4D', textColor: '#2C2723', subTextColor: '#7D7164', headline: '소중한 분들을 모시고 영원을 약속합니다', subheadline: 'THE WEDDING OF MINJUN & JIEUN' },
+        { id: 3, title: '03. 보태니컬 유칼립투스', tag: '가든 & 하우스', bgColor: '#F4F7F4', accentColor: '#527A59', textColor: '#28382C', subTextColor: '#667C6B', headline: '초록빛 싱그러운 계절, 우리 사랑이 피어납니다', subheadline: 'NATURAL GARDEN WEDDING CEREMONY' },
+        { id: 4, title: '04. 모던 미니멀 레터링', tag: '모던 & 심플', bgColor: '#FAFAFA', accentColor: '#1A1A1A', textColor: '#1F1F1F', subTextColor: '#737373', headline: '서로의 곁에서 평생을 함께할 약속', subheadline: 'WE ARE GETTING MARRIED' },
+        { id: 5, title: '05. 선샤인 가든 피치', tag: '생기있는 피치', bgColor: '#FFF9F2', accentColor: '#E68356', textColor: '#422B1E', subTextColor: '#8C6C58', headline: '따사로운 햇살 아래 영원한 사랑을 맹세합니다', subheadline: 'OUR BEAUTIFUL WEDDING JOURNEY' },
+        { id: 6, title: '06. 시네마틱 흑백 듀오', tag: '감성 포토', bgColor: '#F3F3F3', accentColor: '#2B2B2B', textColor: '#1A1A1A', subTextColor: '#6E6E6E', headline: '영화 속 한 장면처럼 찬란하게 빛날 오늘', subheadline: 'A LOVE STORY • FOREVER & ALWAYS' },
+        { id: 7, title: '07. 호텔 럭셔리 네이비', tag: '고급 & 중후함', bgColor: '#17223B', accentColor: '#E5C07B', textColor: '#FDFBF7', subTextColor: '#D5C4A1', headline: '빛나는 순간, 품격 있는 자리에 함께해 주세요', subheadline: 'ROYAL WEDDING CELEBRATION' },
+        { id: 8, title: '08. 앤틱 빈티지 레이스', tag: '빈티지 감성', bgColor: '#FDF9F3', accentColor: '#A67B5B', textColor: '#3D312A', subTextColor: '#8A7667', headline: '시간이 흘러도 변치 않을 우리만의 서약', subheadline: 'VINTAGE ROMANCE WEDDING' },
+        { id: 9, title: '09. 수채화 라벤더 드림', tag: '신비로운 퍼플', bgColor: '#F9F7FC', accentColor: '#8E73B8', textColor: '#362D4A', subTextColor: '#776E8A', headline: '은은한 라벤더 향기처럼 늘 포근한 우리', subheadline: 'LAVENDER BLISS & HAPPINESS' },
+        { id: 10, title: '10. 모던 전통 매화 블라썸', tag: '전통 & 퓨전', bgColor: '#FFFDF9', accentColor: '#B04242', textColor: '#332424', subTextColor: '#806868', headline: '두 가문이 인연 맺어 한 가족이 되는 경사스러운 날', subheadline: '백년가약 • 화목하고 복된 날' },
+        { id: 11, title: '11. 폴라로이드 메모리즈', tag: '포토 & 캐주얼', bgColor: '#FAF8F5', accentColor: '#B35446', textColor: '#2E2B2A', subTextColor: '#78726E', headline: '우리가 함께 걸어온 날들, 앞으로 걸어갈 길', subheadline: 'OUR PRECIOUS MEMORIES IN LOVE' },
+        { id: 12, title: '12. 엘레강스 플라워 아치', tag: '아치 일러스트', bgColor: '#FFF8F6', accentColor: '#C97D89', textColor: '#3B292D', subTextColor: '#82686E', headline: '꽃길만 걸을 두 사람의 앞날을 축복합니다', subheadline: 'WELCOME TO OUR WEDDING RECEPTION' },
+        { id: 13, title: '13. 샴페인 골드 스파클', tag: '화려한 글리터', bgColor: '#242124', accentColor: '#F2D080', textColor: '#FFFFFF', subTextColor: '#DAC08B', headline: '축제의 시작! 모두 함께 축배를 들어주세요', subheadline: 'CHEERS TO LOVE, LAUGHTER & HAPPILY EVER AFTER' },
+        { id: 14, title: '14. 러스틱 포레스트 그린', tag: '숲속 스몰웨딩', bgColor: '#F5F7F3', accentColor: '#3F6146', textColor: '#223326', subTextColor: '#627A68', headline: '숲의 축복 속에 마주 잡은 두 손 놓지 않겠습니다', subheadline: 'RUSTIC WOODLAND WEDDING' },
+        { id: 15, title: '15. 소프트 핑크 튤립', tag: '사랑스러운 핑크', bgColor: '#FFF5F7', accentColor: '#E66885', textColor: '#42242B', subTextColor: '#8A5C66', headline: '설레는 첫 만남의 마음 그대로 평생을 함께', subheadline: 'ETERNAL LOVE & PROMISE' },
+        { id: 16, title: '16. 모던 타이포 에디토리얼', tag: '세련된 타이포', bgColor: '#FFFFFF', accentColor: '#262626', textColor: '#171717', subTextColor: '#6B7280', headline: 'JUST MARRIED • 세상에서 가장 완벽한 날', subheadline: 'SAVE THE DATE • CELEBRATING OUR MARRIAGE' },
+        { id: 17, title: '17. 블루밍 피오니 부케', tag: '풍성한 작약', bgColor: '#FCF8F9', accentColor: '#BD5B78', textColor: '#3B232B', subTextColor: '#7D5763', headline: '꽃처럼 만개하는 우리 두 사람의 찬란한 인생', subheadline: 'SPECIAL WEDDING MOMENT' },
+        { id: 18, title: '18. 어반 스튜디오 매거진', tag: '화보 매거진형', bgColor: '#F5F5F7', accentColor: '#3A3F47', textColor: '#1E2024', subTextColor: '#6C737E', headline: '세상 단 하나뿐인 우리 둘만의 특별한 화보', subheadline: 'WEDDING MAGAZINE SPECIAL EDITION' },
+        { id: 19, title: '19. 골드 리프 모노그램', tag: '품격있는 리스', bgColor: '#FAF6EF', accentColor: '#BFA054', textColor: '#2E271D', subTextColor: '#786955', headline: '믿음과 사랑으로 맺어진 새로운 약속의 시작', subheadline: 'MONOGRAM COMMEMORATIVE BANNER' },
+        { id: 20, title: '20. 퓨어 화이트 캘리그라피', tag: '순백 & 단아함', bgColor: '#FFFFFF', accentColor: '#8C7A6B', textColor: '#2B2621', subTextColor: '#7A726A', headline: '마주 본 눈빛으로 평생을 살아갈 것을 약속합니다', subheadline: 'TWO HEARTS BEATING AS ONE' },
+        { id: 21, title: '21. 프리미엄 벨벳 버건디', tag: '와인 버건디', bgColor: '#38161D', accentColor: '#E6B87D', textColor: '#FFF9F5', subTextColor: '#E0CEBD', headline: '깊은 와인 향처럼 시간이 지날수록 짙어질 사랑', subheadline: 'WINTER NIGHT WEDDING CELEBRATION' }
+      ];
+
+      // 5종 마감 방법 데이터
+      const FINISH_METHODS = [
+        { id: 'heat_cut', name: '열재단 (기본가공)', price: 0, priceDisplay: '+0원 (무료)', description: '올 풀림을 방지하기 위해 테두리를 고온 열선으로 깔끔하게 마감합니다.', indoor: '벽면 테이프 부착용', outdoor: '실외 사용 불가', isOutdoorAllowed: false },
+        { id: 'eyelet_rope', name: '아일렛타공 + 줄', price: 5000, priceDisplay: '+5,000원', description: '사방 모서리에 금속 링을 타공하고 튼튼한 끈을 함께 제공합니다.', indoor: '기둥, 파티션 고정용', outdoor: '강풍 시 찢어짐 위험', isOutdoorAllowed: false },
+        { id: 'eyelet_suction', name: '아일렛타공 + 큐방', price: 8000, priceDisplay: '+8,000원', description: '사방 금속 타공 후 매끄러운 유리에 부착하는 압축 큐방 4개를 제공합니다.', indoor: '통유리창, 매끄러운 타일 부착용', outdoor: '외부 부착 불가', isOutdoorAllowed: false },
+        { id: 'wood_rope', name: '사각각목 + 끈', price: 15000, priceDisplay: '+15,000원', description: '좌우 또는 상하에 각목을 대고 미싱 후 끈을 연결하여 팽팽하게 게시합니다.', indoor: '대형 로비, 천장 현수', outdoor: '야외 거치 추천 (내구성 최상)', isOutdoorAllowed: true },
+        { id: 'flat_band', name: '고강도 납작밴드 덧댐', price: 0, priceDisplay: '별도 문의 필요', description: '태풍급 강풍에도 버티도록 웨빙 밴드를 원단 테두리에 박음질하는 최고급 마감입니다.', indoor: '특수 구조물 전시용', outdoor: '바람이 강한 야외, 펜스 거치', isOutdoorAllowed: true }
+      ];
+
+      // 배너 거치대 데이터
+      const BANNER_STANDS = {
+        none: { name: '배너대 없음 (출력물 600*1800만 구매)', price: 0, desc: '기존 거치대 보유 시 권장' },
+        indoor: { name: '실내 배너대', price: 22000, desc: '웨딩홀 로비, 신부대기실 실내 전용 가벼운 거치대' },
+        outdoor_water: { name: '실외(물통) 배너대', price: 42000, desc: '바람에 강한 하부 물통형 중량 거치대' }
+      };
+
+      // 기본 날짜 계산 (오늘 + 35일)
+      const defaultDate = new Date();
+      defaultDate.setDate(defaultDate.getDate() + 35);
+      const defaultDateStr = defaultDate.toISOString().split('T')[0];
+
+      // 애플리케이션 상태
+      const state = {
+        currentStep: 0,
+        formData: {
+          widthMm: 5000,
+          heightMm: 900,
+          eventDate: defaultDateStr,
+          eventTime: '12:30',
+          isUrgent: false,
+          deliveryMethod: 'pickup', // pickup | parcel | quick
+          selectedTemplateId: 1,
+          groomName: '김민준',
+          brideName: '이지은',
+          weddingHall: '그랜드 앰배서더 서울 블리스홀',
+          installationType: null, // indoor | outdoor
+          finishMethod: null,
+          addBanner: null, // boolean | null
+          bannerStandType: 'none' // none | indoor | outdoor_water
+        },
+        faqs: {
+          introFaq1: false,
+          introFaq2: false,
+          step1Faq1: false
+        },
+        activeModal: null, // 'template' | 'finish' | 'banner' | 'reset' | null
+        copySuccess: false
+      };
+
+      // D-Day 및 주말 제외 영업일 계산기
+      function calculateRemainingDays(dateStr, timeStr) {
+        if (!dateStr) {
+          return { days: 0, businessDays: 0, dDayText: '날짜를 입력해주세요', isThreeDaysOrLess: false, isParcelLocked: true };
+        }
+        const targetDate = new Date(`${dateStr}T${timeStr || '12:00'}:00`);
+        const now = new Date();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const targetStart = new Date(targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate());
+        const diffMs = targetStart.getTime() - todayStart.getTime();
+        const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+
+        let businessDays = 0;
+        if (diffDays > 0) {
+          const cur = new Date(todayStart);
+          cur.setDate(cur.getDate() + 1);
+          while (cur <= targetStart) {
+            const day = cur.getDay();
+            if (day !== 0 && day !== 6) businessDays++;
+            cur.setDate(cur.getDate() + 1);
+          }
+        }
+
+        const isThreeDaysOrLess = diffDays <= 0 || businessDays <= 3;
+        const isParcelLocked = diffDays <= 5 || businessDays <= 5;
+
+        let dDayText = 'D-Day';
+        if (diffDays > 0) dDayText = `D-${businessDays}`;
+        else if (diffDays < 0) dDayText = '행사일 지남';
+
+        return { days: diffDays, businessDays, dDayText, isThreeDaysOrLess, isParcelLocked };
+      }
+
+      // 견적 금액 계산기
+      function calculateQuote() {
+        const { widthMm, heightMm, finishMethod, addBanner, bannerStandType, deliveryMethod } = state.formData;
+        const widthM = (widthMm || 0) / 1000;
+        const heightM = (heightMm || 0) / 1000;
+        const areaM2 = widthM * heightM;
+        const rawBannerCost = areaM2 * 7700;
+        const bannerBasePrice = Math.ceil(rawBannerCost / 1000) * 1000;
+
+        const selectedFinish = FINISH_METHODS.find(f => f.id === finishMethod);
+        const finishCost = selectedFinish ? selectedFinish.price : 0;
+        const hasSpecialInquiry = finishMethod === 'flat_band';
+
+        let bannerPrintPrice = 0;
+        let bannerStandPrice = 0;
+        if (addBanner === true) {
+          bannerPrintPrice = 51000;
+          if (bannerStandType === 'indoor') bannerStandPrice = 22000;
+          else if (bannerStandType === 'outdoor_water') bannerStandPrice = 42000;
+        }
+        const bannerTotalAddon = bannerPrintPrice + bannerStandPrice;
+
+        let deliveryCost = 0;
+        let isQuickDelivery = false;
+        if (deliveryMethod === 'parcel') deliveryCost = 6000;
+        else if (deliveryMethod === 'quick') isQuickDelivery = true;
+
+        const totalPrice = bannerBasePrice + finishCost + bannerTotalAddon + deliveryCost;
+
+        return {
+          widthM,
+          heightM,
+          areaM2,
+          bannerBasePrice,
+          finishCost,
+          bannerTotalAddon,
+          deliveryCost,
+          isQuickDelivery,
+          totalPrice,
+          hasSpecialInquiry
+        };
+      }
+
+      function formatPrice(num) {
+        return (num || 0).toLocaleString('ko-KR') + '원';
+      }
+
+      // 가로 현수막 실시간 SVG 렌더러
+      function renderHorizontalBannerSVG(tmpl, groom, bride, dateStr, hall) {
+        const groomN = groom || '김민준';
+        const brideN = bride || '이지은';
+        const dateT = dateStr ? dateStr.replace(/-/g, '. ') : '2026. 10. 25';
+        const hallT = hall || '그랜드 앰배서더 호텔';
+
+        return `
+          <svg viewBox="0 0 1000 180" class="w-full h-auto drop-shadow-sm rounded select-none" style="background-color: ${tmpl.bgColor};">
+            <rect width="1000" height="180" fill="${tmpl.bgColor}" />
+            <rect x="15" y="15" width="970" height="150" fill="none" stroke="${tmpl.accentColor}" stroke-width="1.5" stroke-opacity="0.35" rx="4" />
+            <circle cx="50" cy="90" r="28" fill="none" stroke="${tmpl.accentColor}" stroke-width="1" stroke-opacity="0.4" />
+            <circle cx="950" cy="90" r="28" fill="none" stroke="${tmpl.accentColor}" stroke-width="1" stroke-opacity="0.4" />
+            
+            <text x="500" y="48" text-anchor="middle" fill="${tmpl.subTextColor}" font-size="12" font-family="'Space Mono', monospace" letter-spacing="3">${tmpl.subheadline}</text>
+            <text x="500" y="80" text-anchor="middle" fill="${tmpl.textColor}" font-size="17" font-weight="700" letter-spacing="1">${tmpl.headline}</text>
+            
+            <text x="500" y="125" text-anchor="middle" fill="${tmpl.textColor}" font-size="30" font-family="'Cormorant Garamond', serif" font-weight="700" letter-spacing="2">
+              ${groomN} <tspan fill="${tmpl.accentColor}" font-size="22" font-style="italic">&amp;</tspan> ${brideN}
+            </text>
+            
+            <text x="500" y="154" text-anchor="middle" fill="${tmpl.subTextColor}" font-size="11" font-weight="500" letter-spacing="1">
+              ${dateT} • ${hallT}
+            </text>
+          </svg>
+        `;
+      }
+
+      // 세로 스탠딩 배너 실시간 SVG 렌더러
+      function renderVerticalBannerSVG(tmpl, groom, bride, dateStr, hall) {
+        const groomN = groom || '김민준';
+        const brideN = bride || '이지은';
+        const dateT = dateStr ? dateStr.replace(/-/g, '. ') : '2026. 10. 25';
+        const hallT = hall || '그랜드 앰배서더 호텔';
+
+        return `
+          <svg viewBox="0 0 200 600" class="w-full h-auto drop-shadow-md rounded border border-stone-200 select-none" style="background-color: ${tmpl.bgColor};">
+            <rect width="200" height="600" fill="${tmpl.bgColor}" />
+            <rect x="8" y="8" width="184" height="584" fill="none" stroke="${tmpl.accentColor}" stroke-width="1" stroke-opacity="0.4" />
+            
+            <!-- 사방 아일렛 펀칭 링 -->
+            <circle cx="16" cy="16" r="4.5" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5" />
+            <circle cx="184" cy="16" r="4.5" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5" />
+            <circle cx="16" cy="584" r="4.5" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5" />
+            <circle cx="184" cy="584" r="4.5" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1.5" />
+
+            <text x="100" y="60" text-anchor="middle" fill="${tmpl.subTextColor}" font-size="8" font-family="'Space Mono', monospace" letter-spacing="1.5">WEDDING INVITATION</text>
+            <text x="100" y="90" text-anchor="middle" fill="${tmpl.accentColor}" font-size="18" font-family="'Cormorant Garamond', serif" font-style="italic">Welcome</text>
+            <text x="100" y="115" text-anchor="middle" fill="${tmpl.textColor}" font-size="11" font-weight="700">결혼식에 초대합니다</text>
+
+            <line x1="40" y1="135" x2="160" y2="135" stroke="${tmpl.accentColor}" stroke-opacity="0.3" stroke-width="1" />
+            
+            <circle cx="100" cy="220" r="45" fill="${tmpl.accentColor}" fill-opacity="0.12" stroke="${tmpl.accentColor}" stroke-opacity="0.35" />
+            <text x="100" y="215" text-anchor="middle" fill="${tmpl.textColor}" font-size="15" font-family="'Cormorant Garamond', serif" font-weight="700">${groomN}</text>
+            <text x="100" y="235" text-anchor="middle" fill="${tmpl.accentColor}" font-size="13" font-style="italic">&amp;</text>
+            <text x="100" y="255" text-anchor="middle" fill="${tmpl.textColor}" font-size="15" font-family="'Cormorant Garamond', serif" font-weight="700">${brideN}</text>
+
+            <line x1="40" y1="310" x2="160" y2="310" stroke="${tmpl.accentColor}" stroke-opacity="0.3" stroke-width="1" />
+
+            <text x="100" y="360" text-anchor="middle" fill="${tmpl.textColor}" font-size="10" font-weight="600" letter-spacing="0.5">${tmpl.headline}</text>
+            <text x="100" y="380" text-anchor="middle" fill="${tmpl.subTextColor}" font-size="8">${tmpl.subheadline}</text>
+
+            <rect x="25" y="480" width="150" height="70" fill="none" stroke="${tmpl.accentColor}" stroke-opacity="0.25" rx="4" />
+            <text x="100" y="505" text-anchor="middle" fill="${tmpl.textColor}" font-size="11" font-weight="700">${dateT}</text>
+            <text x="100" y="525" text-anchor="middle" fill="${tmpl.subTextColor}" font-size="9">${hallT}</text>
+            <text x="100" y="540" text-anchor="middle" fill="${tmpl.accentColor}" font-size="8" font-weight="bold">탐모라 웨딩홀 2F</text>
+          </svg>
+        `;
+      }
+
+      // 마감 방식 1:1 그래픽 렌더러
+      function renderFinishMethodSVG(id) {
+        if (id === 'heat_cut') {
+          return `
+            <svg viewBox="0 0 200 200" class="w-full h-full bg-[#FAF9F6]">
+              <rect x="30" y="30" width="140" height="140" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="2" rx="4" />
+              <rect x="26" y="26" width="148" height="148" fill="none" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 4" rx="6" />
+              <circle cx="100" cy="100" r="28" fill="#FEE2E2" />
+              <path d="M100 80 L100 120 M80 100 L120 100" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" />
+              <text x="100" y="145" text-anchor="middle" fill="#991B1B" font-size="12" font-weight="700">고온 열선 재단</text>
+            </svg>
+          `;
+        } else if (id === 'eyelet_rope') {
+          return `
+            <svg viewBox="0 0 200 200" class="w-full h-full bg-[#FAF9F6]">
+              <rect x="30" y="30" width="140" height="140" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2" rx="4" />
+              <circle cx="48" cy="48" r="9" fill="#9CA3AF" />
+              <circle cx="48" cy="48" r="5" fill="#FFFFFF" />
+              <path d="M48 48 Q 20 20 10 5" fill="none" stroke="#B45309" stroke-width="3" stroke-linecap="round" />
+              <path d="M48 48 Q 50 15 35 5" fill="none" stroke="#B45309" stroke-width="3" stroke-linecap="round" />
+              <text x="100" y="115" text-anchor="middle" fill="#1F2937" font-size="13" font-weight="700">금속 타공 + 로프</text>
+            </svg>
+          `;
+        } else if (id === 'eyelet_suction') {
+          return `
+            <svg viewBox="0 0 200 200" class="w-full h-full bg-[#FAF9F6]">
+              <rect x="30" y="30" width="140" height="140" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2" rx="4" />
+              <circle cx="50" cy="50" r="16" fill="#93C5FD" fill-opacity="0.4" stroke="#3B82F6" stroke-width="1.5" />
+              <circle cx="50" cy="50" r="6" fill="#1D4ED8" />
+              <text x="100" y="115" text-anchor="middle" fill="#1E40AF" font-size="13" font-weight="700">압축 큐방 (유리면)</text>
+            </svg>
+          `;
+        } else if (id === 'wood_rope') {
+          return `
+            <svg viewBox="0 0 200 200" class="w-full h-full bg-[#FAF9F6]">
+              <rect x="25" y="20" width="16" height="160" fill="#D97706" rx="2" stroke="#92400E" stroke-width="1" />
+              <rect x="159" y="20" width="16" height="160" fill="#D97706" rx="2" stroke="#92400E" stroke-width="1" />
+              <rect x="41" y="35" width="118" height="130" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" />
+              <path d="M33 20 Q 100 -5 167 20" fill="none" stroke="#B45309" stroke-width="2.5" />
+              <text x="100" y="115" text-anchor="middle" fill="#78350F" font-size="13" font-weight="700">원목 각목 + 끈</text>
+            </svg>
+          `;
+        } else {
+          return `
+            <svg viewBox="0 0 200 200" class="w-full h-full bg-[#FAF9F6]">
+              <rect x="25" y="25" width="150" height="150" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2" rx="4" />
+              <rect x="25" y="25" width="150" height="16" fill="#1E3A8A" fill-opacity="0.85" />
+              <rect x="25" y="159" width="150" height="16" fill="#1E3A8A" fill-opacity="0.85" />
+              <text x="100" y="105" text-anchor="middle" fill="#1E40AF" font-size="13" font-weight="700">고강도 밴드 덧댐</text>
+            </svg>
+          `;
+        }
+      }
+
+      // 배너 거치대 1:1 그래픽 렌더러
+      function renderBannerStandSVG(type) {
+        if (type === 'none') {
+          return `
+            <svg viewBox="0 0 100 100" class="w-full h-full bg-[#FAF8F5] rounded-lg border border-stone-200">
+              <rect x="35" y="15" width="30" height="70" fill="#FFFFFF" stroke="#1A1918" stroke-width="1.5" rx="1.5" />
+              <circle cx="39" cy="19" r="1.5" fill="#A64B5A" />
+              <circle cx="61" cy="19" r="1.5" fill="#A64B5A" />
+              <circle cx="39" cy="81" r="1.5" fill="#A64B5A" />
+              <circle cx="61" cy="81" r="1.5" fill="#A64B5A" />
+              <line x1="42" y1="30" x2="58" y2="30" stroke="#1A1918" stroke-opacity="0.3" stroke-width="1" />
+              <line x1="42" y1="40" x2="58" y2="40" stroke="#1A1918" stroke-opacity="0.3" stroke-width="1" />
+            </svg>
+          `;
+        } else if (type === 'indoor') {
+          return `
+            <svg viewBox="0 0 100 100" class="w-full h-full bg-[#FAF8F5] rounded-lg border border-stone-200">
+              <line x1="50" y1="10" x2="50" y2="90" stroke="#4B5563" stroke-width="2" />
+              <line x1="50" y1="90" x2="30" y2="98" stroke="#4B5563" stroke-width="2" stroke-linecap="round" />
+              <line x1="50" y1="90" x2="70" y2="98" stroke="#4B5563" stroke-width="2" stroke-linecap="round" />
+              <line x1="50" y1="90" x2="50" y2="100" stroke="#4B5563" stroke-width="2" stroke-linecap="round" />
+              <line x1="30" y1="18" x2="70" y2="18" stroke="#6B7280" stroke-width="1.5" />
+              <line x1="30" y1="82" x2="70" y2="82" stroke="#6B7280" stroke-width="1.5" />
+              <rect x="33" y="20" width="34" height="60" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1" fill-opacity="0.9" />
+            </svg>
+          `;
+        } else {
+          return `
+            <svg viewBox="0 0 100 100" class="w-full h-full bg-[#FAF8F5] rounded-lg border border-stone-200">
+              <rect x="28" y="80" width="44" height="15" fill="#3B82F6" fill-opacity="0.4" stroke="#1D4ED8" stroke-width="1.5" rx="3" />
+              <circle cx="50" cy="87" r="3" fill="#1D4ED8" />
+              <line x1="50" y1="12" x2="50" y2="80" stroke="#1F2937" stroke-width="2.5" />
+              <line x1="28" y1="18" x2="72" y2="18" stroke="#4B5563" stroke-width="1.5" />
+              <line x1="28" y1="74" x2="72" y2="74" stroke="#4B5563" stroke-width="1.5" />
+              <rect x="31" y="20" width="38" height="52" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1" fill-opacity="0.9" />
+            </svg>
+          `;
+        }
+      }
+
+      // 화면 리렌더러 메인 함수
+      function renderApp() {
+        const app = document.getElementById('app');
+        const remaining = calculateRemainingDays(state.formData.eventDate, state.formData.eventTime);
+        const quote = calculateQuote();
+
+        // 5일 이하 택배배송 자동 안전 전환
+        if (remaining.isParcelLocked && state.formData.deliveryMethod === 'parcel') {
+          state.formData.deliveryMethod = 'pickup';
+        }
+
+        // Stepper 데이터
+        const steps = [
+          { step: 0, num: '01', title: '시작하기' },
+          { step: 1, num: '02', title: '규격/일정' },
+          { step: 2, num: '03', title: '디자인/마감' },
+          { step: 3, num: '04', title: '스탠딩 배너' },
+          { step: 4, num: '05', title: '최종 견적서' }
+        ];
+
+        let stepperHTML = `
+          <div class="w-full bg-[#ffffff] pt-6 pb-10 px-4">
+            <nav aria-label="진행 단계" class="max-w-2xl mx-auto">
+              <ol class="flex items-center justify-between overflow-x-auto no-scrollbar py-1">
+                ${steps.map((s, idx) => {
+                  const isActive = state.currentStep === s.step;
+                  const isPast = state.currentStep > s.step;
+                  return `
+                    <li class="flex items-center flex-1 last:flex-none">
+                      <button type="button" onclick="goToStep(${s.step})" class="flex items-center gap-1.5 cursor-pointer group px-1 py-1 ${isActive ? 'text-[#1A1918]' : 'text-stone-500 hover:text-stone-900'}">
+                        <span class="text-[13px] ${isActive ? 'font-bold text-[#1A1918]' : isPast ? 'font-semibold text-stone-700' : 'font-medium text-stone-300'}">${s.num}</span>
+                        <span class="text-[13px] whitespace-nowrap ${isActive ? 'font-bold text-[#1A1918]' : isPast ? 'font-medium text-stone-700' : 'font-normal text-stone-300'}">${s.title}</span>
+                      </button>
+                      ${idx < steps.length - 1 ? `<div class="flex-1 h-[1px] mx-2 ${isPast ? 'bg-[#1A1918]/25' : 'bg-stone-200'}"></div>` : ''}
+                    </li>
+                  `;
+                }).join('')}
+              </ol>
+            </nav>
+          </div>
+        `;
+
+        let contentHTML = '';
+
+        // Step 0: 시작하기
+        if (state.currentStep === 0) {
+          contentHTML = `
+            <div class="space-y-10 sm:space-y-12 animate-fadeIn pb-12 text-center">
+              <section class="space-y-6 text-center">
+                <h2 class="text-[26px] sm:text-[34px] font-bold text-[#A64B5A] leading-[1.2] tracking-tight">
+                  탐모라 웨딩 현수막 &amp; 배너 맞춤 견적
+                </h2>
+                <p class="text-[16px] sm:text-[17px] text-[#1A1918]/70 leading-relaxed max-w-2xl mx-auto">
+                  정확한 일정 조율과 원활한 제작을 위해 신청 전<br />
+                  아래 영업일 기준 및 제작 소요 안내를 먼저 확인해 주세요.
+                </p>
+              </section>
+
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-10 shadow-xs space-y-8 max-w-2xl mx-auto text-center">
+                <div class="space-y-3">
+                  <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight flex items-center justify-center gap-2 mb-2">
+                    <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">1</span>
+                    <span>제작 소요 기간 안내</span>
+                  </h3>
+                  <div class="space-y-2 pt-1 text-center">
+                    <p class="text-[16px] sm:text-[17px] font-bold text-[#1A1918] leading-relaxed">
+                      * 주문신청 확인과 작업은 영업일 기준 2-3일 소요됩니다.
+                    </p>
+                    <p class="text-[15px] text-[#1A1918]/70 leading-relaxed">
+                      행사 예정일 전까지 작업이 어려운 경우 주문이 반려당할 수 있습니다.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-2 text-center">
+                  <div class="divide-y divide-stone-200/60 text-left">
+                    <div class="py-3.5">
+                      <button type="button" onclick="toggleFaq('introFaq1')" class="w-full flex items-center justify-between text-left cursor-pointer group py-1">
+                        <div class="text-[15px] font-medium text-[#666666] group-hover:text-stone-900 flex items-center gap-2">
+                          <span class="text-[#A64B5A]/80 font-bold text-[14px]">Q.</span>
+                          <span>영업일 기준 2-3일 기준을 알고 싶어요.</span>
+                        </div>
+                        <span class="text-stone-400 font-bold">${state.faqs.introFaq1 ? '▲' : '▼'}</span>
+                      </button>
+                      ${state.faqs.introFaq1 ? `
+                        <div class="mt-2.5 text-[14px] text-stone-600 leading-relaxed pl-5 space-y-2.5 bg-stone-50/70 p-3.5 rounded-lg border border-stone-100">
+                          <p>탐모라의 영업시간은 <strong class="text-stone-800">평일 오전 9시-오후 6시</strong>입니다. 영업일 외에 신청하시는 경우, 주말을 제외한 다음 평일에 확인할 수 있는 점 참고 부탁드립니다.</p>
+                          <div class="space-y-1 text-[13px] text-stone-500 pt-1 border-t border-stone-200/60">
+                            <div>• <strong>ex1)</strong> 월요일 20시 신청 → 화요일 09시부터 확인, 목요일까지 제작</div>
+                            <div>• <strong>ex2)</strong> 금요일 17시 신청 → 당일 신청 확인, 주말 제외하여 수요일까지 제작</div>
+                          </div>
+                        </div>
+                      ` : ''}
+                    </div>
+
+                    <div class="py-3.5">
+                      <button type="button" onclick="toggleFaq('introFaq2')" class="w-full flex items-center justify-between text-left cursor-pointer group py-1">
+                        <div class="text-[15px] font-medium text-[#666666] group-hover:text-stone-900 flex items-center gap-2">
+                          <span class="text-[#A64B5A]/80 font-bold text-[14px]">Q.</span>
+                          <span>급하게 필요한데 금액을 더 내서라도 일정을 빨리 할 수 없을까요?</span>
+                        </div>
+                        <span class="text-stone-400 font-bold">${state.faqs.introFaq2 ? '▲' : '▼'}</span>
+                      </button>
+                      ${state.faqs.introFaq2 ? `
+                        <div class="mt-2.5 text-[14px] text-stone-600 leading-relaxed pl-5 space-y-1.5 bg-stone-50/70 p-3.5 rounded-lg border border-stone-100">
+                          <p>카카오톡 채널로 직접 문의 주시면 담당자가 일정 확인 후 가능 여부를 말씀드립니다.</p>
+                          <p class="text-[#A64B5A] text-[13px]">※ 제작 일정 및 내부 사정에 따라 주문이 거절될 수 있습니다.</p>
+                        </div>
+                      ` : ''}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2 flex justify-center">
+                <button type="button" onclick="goToStep(1)" class="py-4 px-10 text-[17px] font-bold flex items-center gap-3 bg-[#1A1918] text-white hover:bg-[#333230] cursor-pointer shadow-sm rounded-lg transition-all">
+                  <span>견적 계산 시작하기</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Step 1: 규격/일정
+        else if (state.currentStep === 1) {
+          const widthMm = state.formData.widthMm || 0;
+          const heightMm = state.formData.heightMm || 0;
+          const widthCm = (widthMm / 10).toLocaleString('ko-KR');
+          const widthM = (widthMm / 1000).toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+          const heightCm = (heightMm / 10).toLocaleString('ko-KR');
+          const heightM = (heightMm / 1000).toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+
+          const isUnderMinSize = (widthMm > 0 && widthMm < 300) || (heightMm > 0 && heightMm < 300);
+          const isBothOver1800 = widthMm > 1800 && heightMm > 1800;
+          const canProceed = widthMm >= 300 && heightMm >= 300 && !isBothOver1800 && Boolean(state.formData.eventDate);
+
+          contentHTML = `
+            <div class="space-y-10 sm:space-y-12 animate-fadeIn pb-12">
+              <section class="space-y-6 text-center">
+                <h2 class="text-[26px] sm:text-[34px] font-bold text-[#A64B5A] leading-[1.2] tracking-tight">
+                  현수막 사이즈 및 예식 일정 입력
+                </h2>
+                <p class="text-[16px] sm:text-[17px] text-[#1A1918]/70 leading-relaxed max-w-2xl mx-auto">
+                  제작을 원하시는 현수막의 가로·세로 규격과 예식 일정을 직접 입력해 주세요.
+                </p>
+              </section>
+
+              <!-- 컨테이너 1: 현수막 사이즈 직접 입력 -->
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-9 shadow-xs space-y-6">
+                <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">1</span>
+                  <span>현수막 사이즈 직접 입력 (mm)</span>
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">가로 길이 (mm)</label>
+                    <div class="relative">
+                      <input type="number" min="300" max="20000" step="50" value="${widthMm || ''}" oninput="updateSize('widthMm', this.value)" class="w-full p-4 text-[20px] font-bold text-[#1A1918] bg-white border border-[#1A1918]/25 focus:border-[#1A1918] focus:outline-hidden transition-all pr-14 rounded-lg" placeholder="예: 5000" />
+                      <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[15px] font-bold text-[#1A1918]/40">mm</span>
+                    </div>
+                    ${widthMm > 0 ? `<div class="text-[14px] text-[#1A1918]/70 pt-1">단위 환산: <strong class="text-[#1A1918]">${widthCm} cm</strong> (${widthM} m)</div>` : ''}
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">세로 길이 (mm)</label>
+                    <div class="relative">
+                      <input type="number" min="200" max="10000" step="50" value="${heightMm || ''}" oninput="updateSize('heightMm', this.value)" class="w-full p-4 text-[20px] font-bold text-[#1A1918] bg-white border border-[#1A1918]/25 focus:border-[#1A1918] focus:outline-hidden transition-all pr-14 rounded-lg" placeholder="예: 900" />
+                      <span class="absolute right-4 top-1/2 -translate-y-1/2 text-[15px] font-bold text-[#1A1918]/40">mm</span>
+                    </div>
+                    ${heightMm > 0 ? `<div class="text-[14px] text-[#1A1918]/70 pt-1">단위 환산: <strong class="text-[#1A1918]">${heightCm} cm</strong> (${heightM} m)</div>` : ''}
+                  </div>
+                </div>
+
+                ${isUnderMinSize ? `
+                  <div class="p-5 bg-[#FFF0F0] border-l-4 border-[#A64B5A] rounded-r-xl flex items-start gap-3.5">
+                    <div>
+                      <div class="text-[17px] font-bold text-[#A64B5A]">현수막은 한 면 길이 최소 300mm 이상이어야 제작 가능합니다</div>
+                      <p class="text-[15px] text-[#1A1918]/80 mt-1 leading-relaxed">출력 및 후가공 공정상 가로와 세로 길이는 각각 최소 300mm(30cm) 이상이어야 제작이 가능합니다.</p>
+                    </div>
+                  </div>
+                ` : ''}
+
+                ${isBothOver1800 ? `
+                  <div class="p-5 bg-[#FFF0F0] border-l-4 border-[#A64B5A] rounded-r-xl flex items-start gap-3.5">
+                    <div>
+                      <div class="text-[17px] font-bold text-[#A64B5A]">현수막은 180이하까지만 제작 가능합니다</div>
+                      <p class="text-[15px] text-[#1A1918]/80 mt-1 leading-relaxed">원단 롤 폭이 1800mm이므로 적어도 한 변은 1800mm 이하여야 단일 원단 출력이 가능합니다.</p>
+                    </div>
+                  </div>
+                ` : ''}
+
+                <div class="pt-4 border-t border-stone-200/60">
+                  <button type="button" onclick="toggleFaq('step1Faq1')" class="w-full flex items-center justify-between text-left cursor-pointer group py-1">
+                    <div class="text-[15px] font-medium text-[#666666] group-hover:text-stone-900 flex items-center gap-2">
+                      <span class="text-[#A64B5A]/80 font-bold text-[14px]">Q.</span>
+                      <span>가장 주문이 많은 사이즈를 알고 싶어요.</span>
+                    </div>
+                    <span class="text-stone-400 font-bold">${state.faqs.step1Faq1 ? '▲' : '▼'}</span>
+                  </button>
+                  ${state.faqs.step1Faq1 ? `
+                    <div class="mt-2 text-[14px] text-[#666666] leading-relaxed pl-5 bg-stone-50/70 p-3 rounded-lg border border-stone-100">
+                      A. 구매량이 가장 많은 인기 사이즈는 <strong class="text-stone-800">5000*900</strong>입니다. 원하시는 예식홀 벽면이나 현수막 거치대 규격을 미리 확인하시는 것을 추천드립니다.
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <!-- 컨테이너 2: 행사 예정일 및 시간 입력 + 수령방법 -->
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-9 shadow-xs space-y-6">
+                <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">2</span>
+                  <span>행사 예정일 및 시간 입력</span>
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 items-end">
+                  <div class="space-y-2">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">행사 예정 날짜</label>
+                    <input type="date" value="${state.formData.eventDate}" onchange="updateForm('eventDate', this.value)" class="w-full p-4 text-[16px] font-medium text-[#1A1918] bg-white border border-[#1A1918]/25 focus:border-[#1A1918] rounded-lg" />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">행사 예정 시간</label>
+                    <input type="time" value="${state.formData.eventTime}" onchange="updateForm('eventTime', this.value)" class="w-full p-4 text-[16px] font-medium text-[#1A1918] bg-white border border-[#1A1918]/25 focus:border-[#1A1918] rounded-lg" />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">행사 일정 잔여일 자동 계산 <span class="text-[13px] font-normal text-stone-500">(주말제외)</span></label>
+                    <div class="p-4 bg-stone-50 border border-stone-200/80 rounded-lg flex items-center justify-between h-[58px]">
+                      <span class="text-[14px] text-stone-500 font-medium">잔여일:</span>
+                      <span class="text-[17px] font-bold ${remaining.isThreeDaysOrLess ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">${state.formData.eventDate ? remaining.dDayText : '-'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2">
+                  <label class="flex items-start gap-3 py-2 cursor-pointer">
+                    <input type="checkbox" ${state.formData.isUrgent ? 'checked' : ''} onchange="updateForm('isUrgent', this.checked)" class="w-5 h-5 accent-[#A64B5A] mt-0.5 cursor-pointer shrink-0" />
+                    <div>
+                      <span class="text-[16px] font-bold text-[#A64B5A] block leading-snug">더 급하게 필요해요</span>
+                      <p class="text-[13px] text-[#A64B5A]/85 mt-1 leading-relaxed">* 추가 금액이 발생할 수 있으며, 내부 일정에 따라 주문이 거부될 수 있습니다.</p>
+                    </div>
+                  </label>
+                </div>
+
+                <!-- 수령방법 (택배배송 5일 이하 잠금) -->
+                <div class="pt-5 border-t border-stone-200/60 space-y-3.5">
+                  <div class="flex items-center justify-between">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">수령방법 선택</label>
+                    ${remaining.isParcelLocked ? `<span class="text-[12px] text-[#A64B5A] font-medium">🔒 잔여일 5일 이하는 택배배송 선택 불가</span>` : ''}
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <button type="button" onclick="updateForm('deliveryMethod', 'pickup')" class="p-4 text-left border-2 transition-all cursor-pointer rounded-xl flex flex-col justify-between ${state.formData.deliveryMethod === 'pickup' ? 'border-[#A64B5A] bg-[#FAF3F0] ring-2 ring-[#A64B5A]/20 shadow-xs' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918]'}">
+                      <div>
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-[16px] font-bold ${state.formData.deliveryMethod === 'pickup' ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">직접수령</span>
+                          ${state.formData.deliveryMethod === 'pickup' ? '<span class="text-[#A64B5A] font-bold">✓</span>' : ''}
+                        </div>
+                        <p class="text-[13px] text-[#1A1918]/60 leading-snug">매장 방문 직접 수령</p>
+                      </div>
+                      <div class="mt-3 text-[14px] font-bold text-[#1A1918]">0원</div>
+                    </button>
+
+                    <button type="button" ${remaining.isParcelLocked ? 'disabled' : ''} onclick="updateForm('deliveryMethod', 'parcel')" class="p-4 text-left border-2 transition-all rounded-xl flex flex-col justify-between ${remaining.isParcelLocked ? 'bg-stone-100/70 border-stone-200 text-stone-400 cursor-not-allowed opacity-60' : state.formData.deliveryMethod === 'parcel' ? 'border-[#A64B5A] bg-[#FAF3F0] ring-2 ring-[#A64B5A]/20 shadow-xs cursor-pointer' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918] cursor-pointer'}">
+                      <div>
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-[16px] font-bold ${remaining.isParcelLocked ? 'text-stone-400' : state.formData.deliveryMethod === 'parcel' ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">택배배송(5일 소요)</span>
+                          ${remaining.isParcelLocked ? '<span>🔒</span>' : state.formData.deliveryMethod === 'parcel' ? '<span class="text-[#A64B5A] font-bold">✓</span>' : ''}
+                        </div>
+                        <p class="text-[13px] text-[#1A1918]/60 leading-snug">${remaining.isParcelLocked ? '잔여일 5일 이하 잠금 (배송기간 부족)' : '영업일 기준 5일 소요'}</p>
+                      </div>
+                      <div class="mt-3 text-[14px] font-bold text-[#A64B5A]">+6,000원</div>
+                    </button>
+
+                    <button type="button" onclick="updateForm('deliveryMethod', 'quick')" class="p-4 text-left border-2 transition-all cursor-pointer rounded-xl flex flex-col justify-between ${state.formData.deliveryMethod === 'quick' ? 'border-[#A64B5A] bg-[#FAF3F0] ring-2 ring-[#A64B5A]/20 shadow-xs' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918]'}">
+                      <div>
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-[16px] font-bold ${state.formData.deliveryMethod === 'quick' ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">퀵배송</span>
+                          ${state.formData.deliveryMethod === 'quick' ? '<span class="text-[#A64B5A] font-bold">✓</span>' : ''}
+                        </div>
+                        <p class="text-[13px] text-[#1A1918]/60 leading-snug">착불 또는 거리별 정산 (당일 발송)</p>
+                      </div>
+                      <div class="mt-3 text-[14px] font-bold text-amber-700">별도 요금 추가</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 이전 / 다음 단계 네비게이션 -->
+              <div class="pt-4 flex items-center justify-between">
+                <button type="button" onclick="goToStep(0)" class="py-4 px-6 border border-[#1A1918]/25 bg-white hover:bg-stone-50 text-[16px] font-bold text-[#1A1918] cursor-pointer rounded-lg">← 이전 단계</button>
+                <button type="button" ${!canProceed ? 'disabled' : ''} onclick="goToStep(2)" class="py-4 px-8 text-[17px] font-bold transition-all flex items-center gap-3 rounded-lg ${canProceed ? 'bg-[#1A1918] text-white hover:bg-[#333230] cursor-pointer shadow-sm' : 'bg-stone-200 text-stone-400 cursor-not-allowed'}">
+                  <span>다음 단계로 이동</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Step 2: 디자인/마감
+        else if (state.currentStep === 2) {
+          const selectedTmpl = TEMPLATES.find(t => t.id === state.formData.selectedTemplateId) || TEMPLATES[0];
+          const canProceed = Boolean(state.formData.selectedTemplateId) && Boolean(state.formData.installationType) && Boolean(state.formData.finishMethod);
+
+          contentHTML = `
+            <div class="space-y-12 sm:space-y-16 animate-fadeIn pb-12">
+              <section class="space-y-6 text-center">
+                <h2 class="text-[26px] sm:text-[34px] font-bold text-[#A64B5A] leading-[1.2] tracking-tight">
+                  템플릿 고르기 및 마감 방법 선택
+                </h2>
+                <p class="text-[16px] sm:text-[17px] text-[#1A1918]/70 leading-relaxed max-w-2xl mx-auto">
+                  원하시는 현수막 디자인 템플릿과 설치 장소에 부합하는 마감 옵션을 선택해 주세요.
+                </p>
+              </section>
+
+              <!-- 컨테이너 1: 템플릿 선택 -->
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-9 shadow-xs space-y-6">
+                <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">1</span>
+                  <span>현수막 템플릿 선택 (21종)</span>
+                </h3>
+
+                <div class="space-y-4">
+                  <!-- 템플릿 그리드 -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    ${TEMPLATES.map(t => {
+                      const isSelected = state.formData.selectedTemplateId === t.id;
+                      return `
+                        <div onclick="selectTemplate(${t.id})" class="p-3.5 border transition-all cursor-pointer flex flex-col justify-between rounded-xl ${isSelected ? 'border-[#A64B5A] bg-[#FFFDFC] ring-2 ring-[#A64B5A]/30 shadow-xs' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918]'}">
+                          <div class="mb-2 pointer-events-none">
+                            ${renderHorizontalBannerSVG(t, state.formData.groomName, state.formData.brideName, state.formData.eventDate, state.formData.weddingHall)}
+                          </div>
+                          <div class="flex items-center justify-between pt-1">
+                            <span class="font-bold text-[14px] text-[#1A1918] truncate">${t.title}</span>
+                            <span class="text-[12px] font-bold px-2 py-0.5 border rounded ${isSelected ? 'bg-[#A64B5A] text-white border-[#A64B5A]' : 'border-[#1A1918]/20 text-[#1A1918]/60'}">
+                              ${isSelected ? '선택됨' : '선택'}
+                            </span>
+                          </div>
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
+
+                  <!-- 선택 템플릿 실시간 대형 미리보기 -->
+                  <div class="bg-[#ffffff] p-5 sm:p-7 border-2 border-[#A64B5A]/40 rounded-xl space-y-3 animate-fadeIn my-4 shadow-xs">
+                    <div class="flex items-center justify-between border-b border-[#1A1918]/10 pb-2.5">
+                      <h4 class="text-[17px] font-bold text-[#A64B5A]">${selectedTmpl.title} 실시간 미리보기</h4>
+                      <span class="text-[13px] text-[#1A1918]/60 font-medium">5000 × 900 비율</span>
+                    </div>
+                    ${renderHorizontalBannerSVG(selectedTmpl, state.formData.groomName, state.formData.brideName, state.formData.eventDate, state.formData.weddingHall)}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 컨테이너 2: 현수막 마감방법 -->
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-9 shadow-xs space-y-7">
+                <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">2</span>
+                  <span>현수막 마감방법</span>
+                </h3>
+
+                <div class="space-y-3">
+                  <label class="block text-[15px] font-bold text-[#1A1918]">설치 장소 선택 (필수)</label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button type="button" onclick="selectInstallation('indoor')" class="p-5 text-left border-2 transition-all cursor-pointer rounded-xl ${state.formData.installationType === 'indoor' ? 'bg-[#FAF3F0] text-[#A64B5A] border-[#A64B5A] ring-2 ring-[#A64B5A]/20 shadow-xs' : 'bg-white text-[#1A1918] border-[#1A1918]/15 hover:border-[#1A1918]'}">
+                      <div class="text-[16px] font-bold mb-1.5">실내 설치</div>
+                      <p class="text-[14px] leading-relaxed ${state.formData.installationType === 'indoor' ? 'text-[#8C5E4E]' : 'text-[#1A1918]/60'}">예식장 본식 홀 벽면, 신부대기실, 실내 로비, 포토테이블 부착</p>
+                    </button>
+
+                    <button type="button" onclick="selectInstallation('outdoor')" class="p-5 text-left border-2 transition-all cursor-pointer rounded-xl ${state.formData.installationType === 'outdoor' ? 'bg-[#FAF3F0] text-[#A64B5A] border-[#A64B5A] ring-2 ring-[#A64B5A]/20 shadow-xs' : 'bg-white text-[#1A1918] border-[#1A1918]/15 hover:border-[#1A1918]'}">
+                      <div class="text-[16px] font-bold mb-1.5">실외 설치</div>
+                      <p class="text-[14px] leading-relaxed ${state.formData.installationType === 'outdoor' ? 'text-[#8C5E4E]' : 'text-[#1A1918]/60'}">야외 가든 웨딩, 정원 펜스, 건물 외벽 등 바람에 노출되는 환경</p>
+                    </button>
+                  </div>
+                </div>
+
+                ${state.formData.installationType ? `
+                  <div class="space-y-4 pt-3 animate-fadeIn border-t border-[#1A1918]/10">
+                    <label class="block text-[15px] font-bold text-[#1A1918]">마감 가공 방식 선택 (5종)</label>
+
+                    ${state.formData.installationType === 'outdoor' ? `
+                      <div class="p-5 bg-[#FFF0F0] border-l-4 border-[#A64B5A] rounded-r-xl flex items-start gap-3.5 mb-3">
+                        <div>
+                          <div class="text-[16px] font-bold text-[#A64B5A]">실외설치일 경우 타공이 찢어질 위험이 있어 사각각목+끈부터 선택하실 수 있습니다.</div>
+                          <p class="text-[14px] text-[#1A1918]/80 mt-1 leading-relaxed">야외 강풍 시 타공 찢어짐 위험으로 인해 열재단, 아일렛타공+줄, 아일렛타공+큐방 옵션은 선택하실 수 없습니다.</p>
+                        </div>
+                      </div>
+                    ` : ''}
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
+                      ${FINISH_METHODS.map(m => {
+                        const isAllowed = state.formData.installationType === 'indoor' ? true : m.isOutdoorAllowed;
+                        const isSelected = state.formData.finishMethod === m.id;
+                        return `
+                          <div onclick="${isAllowed ? `updateForm('finishMethod', '${m.id}')` : ''}" class="p-4 border transition-all flex flex-col justify-between relative rounded-xl ${!isAllowed ? 'bg-stone-100/70 border-[#1A1918]/10 opacity-50 cursor-not-allowed select-none' : isSelected ? 'bg-[#FAF3F0] border-[#A64B5A] ring-2 ring-[#A64B5A]/20 shadow-xs cursor-pointer' : 'bg-white border-[#1A1918]/15 hover:border-[#1A1918] cursor-pointer'}">
+                            <div class="mb-3 relative rounded-lg overflow-hidden h-36">
+                              ${renderFinishMethodSVG(m.id)}
+                              ${!isAllowed ? `<div class="absolute inset-0 bg-[#1A1918]/70 flex flex-col items-center justify-center text-white p-2 text-center font-bold text-[12px]">🔒 실외 잠금</div>` : ''}
+                            </div>
+                            <div>
+                              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-1">
+                                <span class="text-[15px] font-bold text-[#1A1918]">${m.name}</span>
+                                <span class="text-[14px] font-bold text-[#A64B5A]">${m.priceDisplay}</span>
+                              </div>
+                              <p class="text-[12px] text-[#1A1918]/70 leading-relaxed mb-3 line-clamp-2">${m.description}</p>
+                            </div>
+                            <div class="pt-2 border-t border-[#1A1918]/10 flex items-center justify-between">
+                              <span class="text-[11px] text-[#1A1918]/60">${state.formData.installationType === 'indoor' ? m.indoor : m.outdoor}</span>
+                              <span class="text-[12px] font-bold px-2 py-0.5 border rounded ${isSelected ? 'bg-[#A64B5A] text-white border-[#A64B5A]' : 'border-[#1A1918]/20 text-[#1A1918]/60'}">
+                                ${isSelected ? '선택됨' : '선택'}
+                              </span>
+                            </div>
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                ` : `
+                  <div class="p-8 border-2 border-dashed border-[#1A1918]/20 bg-stone-50/50 rounded-xl text-center">
+                    <p class="text-[16px] font-bold text-[#1A1918]">실내 또는 실외 설치 장소를 먼저 선택해 주세요</p>
+                    <p class="text-[14px] text-[#1A1918]/60 mt-1">장소에 부합하는 5가지 마감 가공 옵션이 나타납니다.</p>
+                  </div>
+                `}
+              </div>
+
+              <!-- 이전 / 다음 단계 네비게이션 -->
+              <div class="pt-4 flex items-center justify-between">
+                <button type="button" onclick="goToStep(1)" class="py-4 px-6 border border-[#1A1918]/25 bg-white hover:bg-stone-50 text-[16px] font-bold text-[#1A1918] cursor-pointer rounded-lg">← 이전 단계</button>
+                <button type="button" ${!canProceed ? 'disabled' : ''} onclick="goToStep(3)" class="py-4 px-8 text-[17px] font-bold transition-all flex items-center gap-3 rounded-lg ${canProceed ? 'bg-[#1A1918] text-white hover:bg-[#333230] cursor-pointer shadow-sm' : 'bg-stone-200 text-stone-400 cursor-not-allowed'}">
+                  <span>다음 단계로 이동</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Step 3: 스탠딩 배너
+        else if (state.currentStep === 3) {
+          const selectedTmpl = TEMPLATES.find(t => t.id === state.formData.selectedTemplateId) || TEMPLATES[0];
+          const canProceed = state.formData.addBanner !== null;
+
+          contentHTML = `
+            <div class="space-y-10 sm:space-y-12 animate-fadeIn pb-12">
+              <section class="space-y-6 text-center">
+                <h2 class="text-[26px] sm:text-[34px] font-bold text-[#A64B5A] leading-[1.2] tracking-tight">
+                  동일 디자인 스탠딩 배너 추가 제작
+                </h2>
+                <p class="text-[16px] sm:text-[17px] text-[#1A1918]/70 leading-relaxed max-w-2xl mx-auto">
+                  같은 디자인으로 배너를 추가 제작할 수 있습니다.<br />
+                  필요하지 않은 경우 '안할래요'를 선택해 주세요.
+                </p>
+              </section>
+
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- 좌측 스탠딩 배너 실물 뷰 -->
+                <div class="lg:col-span-5 bg-[#ffffff] p-6 sm:p-7 border border-stone-200/90 rounded-2xl shadow-xs flex flex-col items-center">
+                  <div class="w-full flex items-center justify-between mb-4">
+                    <span class="text-[16px] font-bold text-[#1A1918]">스탠딩 배너 실물 미리보기</span>
+                  </div>
+                  <div class="w-full flex justify-center py-2 max-w-[240px]">
+                    ${renderVerticalBannerSVG(selectedTmpl, state.formData.groomName, state.formData.brideName, state.formData.eventDate, state.formData.weddingHall)}
+                  </div>
+                  <p class="text-[13px] text-[#1A1918]/60 text-center mt-4">* 선택하신 [${selectedTmpl.title}] 디자인과 동일하게 제작됩니다.</p>
+                </div>
+
+                <!-- 우측 배너 추가 및 배너대 선택 -->
+                <div class="lg:col-span-7 space-y-7">
+                  <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-xs space-y-5">
+                    <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                      <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">1</span>
+                      <span>배너 추가 제작 여부</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <button type="button" onclick="selectAddBanner(true)" class="p-5 text-left border-2 transition-all cursor-pointer rounded-xl ${state.formData.addBanner === true ? 'border-[#A64B5A] bg-[#FAF3F0] ring-2 ring-[#A64B5A]/20 shadow-xs' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918]'}">
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-[17px] font-bold ${state.formData.addBanner === true ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">필요해요</span>
+                          ${state.formData.addBanner === true ? '<span class="text-[#A64B5A] font-bold">✓</span>' : ''}
+                        </div>
+                        <div class="text-[13px] text-[#1A1918]/60 font-medium">최대 93,000원 소요</div>
+                      </button>
+
+                      <button type="button" onclick="selectAddBanner(false)" class="p-5 text-left border-2 transition-all cursor-pointer rounded-xl ${state.formData.addBanner === false ? 'border-[#1A1918] bg-stone-50 ring-2 ring-[#1A1918]/15 shadow-xs' : 'border-[#1A1918]/15 bg-white hover:border-[#1A1918]'}">
+                        <div class="flex items-center justify-between mb-1">
+                          <span class="text-[17px] font-bold text-[#1A1918]">안할래요</span>
+                          ${state.formData.addBanner === false ? '<span class="text-[#1A1918] font-bold">✓</span>' : ''}
+                        </div>
+                        <div class="text-[13px] text-[#1A1918]/60 font-medium">현수막만 제작</div>
+                      </button>
+                    </div>
+                  </div>
+
+                  ${state.formData.addBanner === true ? `
+                    <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-7 shadow-xs space-y-6 animate-fadeIn">
+                      <div class="mb-2">
+                        <h4 class="text-[19px] font-bold text-[#1A1918] flex items-center gap-2.5">
+                          <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">2</span>
+                          <span>배너대 구성 선택</span>
+                        </h4>
+                        <p class="text-[14px] text-[#1A1918]/70 mt-1">배너대는 기본 포함이 아니므로 추가금이 발생합니다. 원하시는 종류를 선택해주세요.</p>
+                      </div>
+
+                      <div class="py-2 flex items-center justify-between border-b border-stone-100 pb-3">
+                        <div>
+                          <div class="text-[16px] font-bold text-[#1A1918]">1. 배너 디자인출력 (600 × 1800)</div>
+                          <div class="text-[13px] text-[#1A1918]/60 mt-0.5">고급 PET 원단 + 사방 타공링 마감 (필수 기본 출력물)</div>
+                        </div>
+                        <span class="text-[18px] font-bold text-[#1A1918] shrink-0 ml-3">51,000원</span>
+                      </div>
+
+                      <div class="flex items-center justify-center py-0.5 text-[#1A1918]/30 font-bold text-[20px]">+</div>
+
+                      <div class="space-y-3.5">
+                        <label class="block text-[14px] font-bold text-[#1A1918]">배너 거치대 선택:</label>
+
+                        ${['none', 'indoor', 'outdoor_water'].map(type => {
+                          const stand = BANNER_STANDS[type];
+                          const isSel = state.formData.bannerStandType === type;
+                          return `
+                            <div onclick="updateForm('bannerStandType', '${type}')" class="p-4 border transition-all cursor-pointer rounded-xl flex items-center gap-4 ${isSel ? 'border-[#A64B5A] bg-[#FAF3F0] ring-1 ring-[#A64B5A]/20 shadow-xs' : 'bg-white border-[#1A1918]/15 hover:border-[#1A1918]'}">
+                              <div class="w-16 h-16 sm:w-20 sm:h-20 shrink-0">
+                                ${renderBannerStandSVG(type)}
+                              </div>
+                              <div class="flex-1 min-w-0">
+                                <div class="text-[16px] font-bold text-[#1A1918]">${stand.name}</div>
+                                <div class="text-[13px] text-[#1A1918]/60 mt-0.5">${stand.desc}</div>
+                                <div class="mt-2 text-[15px] font-bold ${stand.price > 0 ? 'text-[#A64B5A]' : 'text-[#1A1918]'}">
+                                  ${stand.price > 0 ? '+' + formatPrice(stand.price) : '+0원'}
+                                </div>
+                              </div>
+                            </div>
+                          `;
+                        }).join('')}
+                      </div>
+
+                      <div class="p-4 bg-[#FAF8F5] border border-[#1A1918]/10 rounded-xl flex items-center justify-between">
+                        <span class="text-[15px] font-bold text-[#1A1918]">배너 추가 옵션 합계:</span>
+                        <span class="text-[20px] font-bold text-[#A64B5A]">${formatPrice(quote.bannerTotalAddon)}</span>
+                      </div>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <!-- 이전 / 다음 단계 네비게이션 -->
+              <div class="pt-4 flex items-center justify-between">
+                <button type="button" onclick="goToStep(2)" class="py-4 px-6 border border-[#1A1918]/25 bg-white hover:bg-stone-50 text-[16px] font-bold text-[#1A1918] cursor-pointer rounded-lg">← 이전 단계</button>
+                <button type="button" ${!canProceed ? 'disabled' : ''} onclick="goToStep(4)" class="py-4 px-8 text-[17px] font-bold transition-all flex items-center gap-3 rounded-lg ${canProceed ? 'bg-[#1A1918] text-white hover:bg-[#333230] cursor-pointer shadow-sm' : 'bg-stone-200 text-stone-400 cursor-not-allowed'}">
+                  <span>다음 단계로 이동</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Step 4: 최종 견적서
+        else if (state.currentStep === 4) {
+          const selectedTmpl = TEMPLATES.find(t => t.id === state.formData.selectedTemplateId) || TEMPLATES[0];
+          const selectedFinish = FINISH_METHODS.find(f => f.id === state.formData.finishMethod) || FINISH_METHODS[0];
+
+          contentHTML = `
+            <div class="space-y-10 sm:space-y-12 animate-fadeIn pb-14">
+              <section class="space-y-6 text-center">
+                <h2 class="text-[26px] sm:text-[34px] font-bold text-[#A64B5A] leading-[1.2] tracking-tight">
+                  주문 확인 및 견적 안내
+                </h2>
+                <p class="text-[16px] sm:text-[17px] text-[#1A1918]/70 leading-relaxed max-w-2xl mx-auto">
+                  선택하신 주문 내역과 최종 예상 견적입니다.<br />
+                  각 항목 우측의 <strong>'이미지 미리보기'</strong>로 디자인을 확인하거나<br />
+                  <strong>'수정'</strong> 버튼으로 옵션을 변경하실 수 있습니다.
+                </p>
+              </section>
+
+              <!-- 주문 선택 옵션 상세 -->
+              <div class="bg-[#ffffff] border border-stone-200/90 rounded-2xl p-6 sm:p-9 shadow-xs space-y-6">
+                <h3 class="text-[20px] sm:text-[22px] font-bold text-[#1A1918] tracking-tight mb-2 flex items-center gap-2.5">
+                  <span class="w-6 h-6 rounded-full bg-[#1A1918] text-white text-[13px] font-bold inline-flex items-center justify-center shrink-0">1</span>
+                  <span>주문 선택 옵션 상세</span>
+                </h3>
+
+                <div class="divide-y divide-[#1A1918]/10 text-[15px] sm:text-[16px]">
+                  <!-- 1. 현수막 규격 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">현수막 규격</div>
+                    <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <span class="font-medium text-[#1A1918]">${state.formData.widthMm} × ${state.formData.heightMm} mm <span class="text-[#1A1918]/60 font-normal ml-2">(${quote.widthM}m × ${quote.heightM}m)</span></span>
+                      <span class="font-medium text-[#1A1918] sm:text-right">기본금 ${formatPrice(quote.bannerBasePrice)}</span>
+                    </div>
+                    <button type="button" onclick="goToStep(1)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer shrink-0 rounded">수정</button>
+                  </div>
+
+                  <!-- 2. 행사 예정일 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">행사 예정일</div>
+                    <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <span class="font-medium text-[#1A1918]">${state.formData.eventDate} ${state.formData.eventTime}</span>
+                      <span class="font-semibold text-[#A64B5A] sm:text-right">${remaining.dDayText}</span>
+                    </div>
+                    <button type="button" onclick="goToStep(1)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer shrink-0 rounded">수정</button>
+                  </div>
+
+                  <!-- 3. 선택 템플릿 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">선택 템플릿</div>
+                    <div class="flex-1">
+                      <span class="font-medium text-[#1A1918]">${selectedTmpl.title}</span>
+                      <span class="text-[13px] text-[#1A1918]/60 block sm:inline sm:ml-2">(${selectedTmpl.tag})</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                      <button type="button" onclick="openModal('template')" class="px-2.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-[#555555] border border-stone-300 text-[12px] font-bold flex items-center gap-1 cursor-pointer transition-colors rounded">
+                        <span>👁</span>
+                        <span>이미지 미리보기</span>
+                      </button>
+                      <button type="button" onclick="goToStep(2)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer rounded">수정</button>
+                    </div>
+                  </div>
+
+                  <!-- 4. 설치 환경 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">설치 환경</div>
+                    <div class="flex-1"><span class="font-medium text-[#1A1918]">${state.formData.installationType === 'indoor' ? '실내 설치' : '실외 설치'}</span></div>
+                    <button type="button" onclick="goToStep(2)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer rounded">수정</button>
+                  </div>
+
+                  <!-- 5. 마감 방법 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">마감 방법</div>
+                    <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <span class="font-medium text-[#1A1918]">${selectedFinish.name}</span>
+                      <span class="font-medium text-[#1A1918] sm:text-right">${quote.hasSpecialInquiry ? '추가 문의 필요' : selectedFinish.priceDisplay}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                      <button type="button" onclick="openModal('finish')" class="px-2.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-[#555555] border border-stone-300 text-[12px] font-bold flex items-center gap-1 cursor-pointer transition-colors rounded">
+                        <span>👁</span>
+                        <span>이미지 미리보기</span>
+                      </button>
+                      <button type="button" onclick="goToStep(2)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer rounded">수정</button>
+                    </div>
+                  </div>
+
+                  <!-- 6. 스탠딩 배너 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">스탠딩 배너</div>
+                    <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <span class="font-medium text-[#1A1918]">
+                        ${state.formData.addBanner ? `신청 (${state.formData.bannerStandType === 'none' ? '배너대 미포함 / 출력물만' : state.formData.bannerStandType === 'indoor' ? '실내 배너대 포함' : '실외(물통) 배너대 포함'})` : '미신청'}
+                      </span>
+                      <span class="font-medium text-[#1A1918] sm:text-right">${state.formData.addBanner ? formatPrice(quote.bannerTotalAddon) : '0원'}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                      ${state.formData.addBanner ? `
+                        <button type="button" onclick="openModal('banner')" class="px-2.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-[#555555] border border-stone-300 text-[12px] font-bold flex items-center gap-1 cursor-pointer transition-colors rounded">
+                          <span>👁</span>
+                          <span>이미지 미리보기</span>
+                        </button>
+                      ` : ''}
+                      <button type="button" onclick="goToStep(3)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer rounded">수정</button>
+                    </div>
+                  </div>
+
+                  <!-- 7. 수령 방법 -->
+                  <div class="py-4 flex items-center justify-between gap-3">
+                    <div class="w-24 sm:w-32 font-medium text-[#1A1918]/70 shrink-0">수령 방법</div>
+                    <div class="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                      <span class="font-medium text-[#1A1918]">${state.formData.deliveryMethod === 'pickup' ? '직접수령 (매장 방문)' : state.formData.deliveryMethod === 'parcel' ? '택배배송 (5일 소요)' : '퀵배송'}</span>
+                      <span class="font-medium ${state.formData.deliveryMethod === 'quick' ? 'text-amber-700' : 'text-[#1A1918]'} sm:text-right">
+                        ${state.formData.deliveryMethod === 'pickup' ? '0원' : state.formData.deliveryMethod === 'parcel' ? '+6,000원' : '별도 요금 추가 (퀵배송 미포함)'}
+                      </span>
+                    </div>
+                    <button type="button" onclick="goToStep(1)" class="px-3 py-1.5 border border-[#1A1918]/30 hover:bg-[#1A1918] hover:text-white text-[13px] font-bold text-[#1A1918] transition-all cursor-pointer rounded">수정</button>
+                  </div>
+                </div>
+
+                <!-- 최종 예상 견적금액 (퀵배송 미포함 / 납작밴드 별도상담 표시) -->
+                <div class="p-6 bg-stone-50/70 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+                  <div>
+                    <div class="text-[17px] font-bold text-[#1A1918]">최종 예상 견적 금액</div>
+                    <div class="text-[13px] text-[#1A1918]/60 mt-0.5">부가세(VAT) 포함 ${state.formData.deliveryMethod === 'parcel' ? '/ 택배배송비 포함' : state.formData.deliveryMethod === 'quick' ? '/ 퀵배송비 별도' : '/ 직접수령'}</div>
+                  </div>
+                  <div class="text-[26px] font-extrabold text-[#A64B5A] tracking-tight flex flex-wrap items-center justify-end">
+                    <span>${formatPrice(quote.totalPrice)}</span>
+                    ${quote.hasSpecialInquiry ? `<span class="text-[14px] font-medium text-amber-700 ml-2">(+납작밴드 별도상담)</span>` : ''}
+                    ${quote.isQuickDelivery ? `<span class="text-[14px] font-medium text-amber-700 ml-2">(퀵배송 미포함)</span>` : ''}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 복사하기 & 카톡 이동 -->
+              <div class="relative pt-4 flex flex-col items-center gap-3">
+                <p class="text-[14px] text-center text-[#1A1918]/75 font-medium">아래 버튼으로 견적서를 복사한 후, 채널에 붙여주시면 더 원할한 문의가 가능합니다</p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                  <button type="button" onclick="copyQuote()" class="w-full sm:w-auto px-8 py-4 bg-[#1A1918] hover:bg-[#333230] text-white text-[17px] font-bold inline-flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-sm rounded-lg">
+                    <span>📋</span>
+                    <span>${state.copySuccess ? '견적서 복사 완료!' : '견적서 복사하기'}</span>
+                  </button>
+
+                  <div class="relative w-full sm:w-auto flex flex-col items-center">
+                    ${state.copySuccess ? `
+                      <div class="absolute -top-12 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap px-3.5 py-1.5 bg-[#FAF8F5] border border-stone-300 text-stone-800 text-[13px] font-bold rounded-lg shadow-sm animate-bubble flex items-center gap-1.5">
+                        <span>💬 카톡 채널에서 복사한 내용을 붙여주세요</span>
+                        <div class="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-[#FAF8F5] border-r border-b border-stone-300 rotate-45"></div>
+                      </div>
+                    ` : ''}
+
+                    <a href="https://pf.kakao.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-[#FEE500] hover:bg-[#FADA0A] text-[#191919] text-[17px] font-bold inline-flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-sm rounded-lg">
+                      <span>💬</span>
+                      <span>카톡채널 이동하기</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 처음부터 다시하기 -->
+              <div class="pt-8 border-t border-[#1A1918]/10 text-center space-y-3">
+                <p class="text-[14px] text-[#1A1918]/65 font-medium">부분 수정이 필요한 경우 주문 확인 내역에 수정할 옵션을 클릭해주세요</p>
+                <div>
+                  <button type="button" onclick="openModal('reset')" class="px-6 py-3 border border-[#1A1918]/30 bg-white hover:bg-rose-50 hover:border-rose-400 hover:text-rose-600 text-[15px] font-bold text-[#1A1918] inline-flex items-center gap-2 transition-all cursor-pointer rounded-lg">
+                    <span>↺</span>
+                    <span>처음부터 다시하기</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        app.innerHTML = `
+          ${stepperHTML}
+          <main class="flex-1 px-4 py-6 sm:px-8 sm:py-10 bg-[#ffffff]">
+            <div class="max-w-4xl mx-auto">
+              ${contentHTML}
+            </div>
+          </main>
+        `;
+
+        renderModal();
+      }
+
+      // 모달 렌더러
+      function renderModal() {
+        const container = document.getElementById('modal-container');
+        if (!state.activeModal) {
+          container.innerHTML = '';
+          return;
+        }
+
+        const selectedTmpl = TEMPLATES.find(t => t.id === state.formData.selectedTemplateId) || TEMPLATES[0];
+        const selectedFinish = FINISH_METHODS.find(f => f.id === state.formData.finishMethod) || FINISH_METHODS[0];
+
+        if (state.activeModal === 'reset') {
+          container.innerHTML = `
+            <div class="fixed inset-0 z-50 bg-[#1A1918]/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div class="bg-white p-6 sm:p-8 max-w-md w-full border border-[#1A1918] text-center space-y-5 rounded-2xl shadow-xl">
+                <div class="w-12 h-12 border border-[#A64B5A] text-[#A64B5A] flex items-center justify-center mx-auto rounded-full text-xl font-bold">!</div>
+                <div>
+                  <h4 class="text-[20px] font-bold text-[#1A1918]">초기화 확인</h4>
+                  <p class="text-[17px] font-bold text-[#A64B5A] mt-2">모든 내역이 삭제되고 처음부터 다시 시작됩니다</p>
+                  <p class="text-[14px] text-[#1A1918]/70 mt-1 leading-relaxed">
+                    기입하신 규격, 디자인, 마감 및 배너 옵션이<br />
+                    모두 기본값으로 리셋됩니다.
+                  </p>
+                </div>
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                  <button type="button" onclick="closeModal()" class="py-3 px-4 border border-[#1A1918]/30 text-[#1A1918] text-[15px] font-bold hover:bg-stone-100 cursor-pointer rounded-lg">취소</button>
+                  <button type="button" onclick="resetAll()" class="py-3 px-4 bg-[#1A1918] text-white text-[15px] font-bold hover:bg-[#333230] cursor-pointer rounded-lg">다시시작</button>
+                </div>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        let modalTitle = '';
+        let modalBody = '';
+
+        if (state.activeModal === 'template') {
+          modalTitle = `선택 템플릿: ${selectedTmpl.title}`;
+          modalBody = `
+            <div class="w-full space-y-3">
+              ${renderHorizontalBannerSVG(selectedTmpl, state.formData.groomName, state.formData.brideName, state.formData.eventDate, state.formData.weddingHall)}
+              <div class="text-center text-[14px] text-stone-500">5000 × 900 비율 현수막 실물 그래픽</div>
+            </div>
+          `;
+        } else if (state.activeModal === 'finish') {
+          modalTitle = `마감 방법: ${selectedFinish.name}`;
+          modalBody = `
+            <div class="flex flex-col items-center space-y-3 max-w-md w-full mx-auto">
+              <div class="w-64 h-64 border border-stone-200 rounded-xl overflow-hidden shadow-xs bg-stone-50">
+                ${renderFinishMethodSVG(selectedFinish.id)}
+              </div>
+              <div class="text-center">
+                <div class="text-[17px] font-bold text-[#1A1918]">${selectedFinish.name} (${selectedFinish.priceDisplay})</div>
+                <p class="text-[14px] text-stone-600 mt-1">${selectedFinish.description}</p>
+              </div>
+            </div>
+          `;
+        } else if (state.activeModal === 'banner') {
+          modalTitle = `스탠딩 배너: ${selectedTmpl.title}`;
+          modalBody = `
+            <div class="flex flex-col items-center space-y-3">
+              <div class="w-64">
+                ${renderVerticalBannerSVG(selectedTmpl, state.formData.groomName, state.formData.brideName, state.formData.eventDate, state.formData.weddingHall)}
+              </div>
+              <div class="text-center text-[14px] text-stone-500">600 × 1800 비율 스탠딩 배너 실물 그래픽</div>
+            </div>
+          `;
+        }
+
+        container.innerHTML = `
+          <div class="fixed inset-0 z-50 bg-[#1A1918]/70 backdrop-blur-xs flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 space-y-4 shadow-2xl border border-[#1A1918]/20 relative max-h-[90vh] overflow-y-auto">
+              <div class="flex items-center justify-between border-b border-[#1A1918]/10 pb-3">
+                <h4 class="text-[19px] font-bold text-[#1A1918]">${modalTitle}</h4>
+                <button type="button" onclick="closeModal()" class="p-1 text-[#1A1918]/60 hover:text-[#1A1918] text-2xl font-bold cursor-pointer">×</button>
+              </div>
+              <div class="py-2 flex justify-center">${modalBody}</div>
+              <div class="pt-3 border-t border-[#1A1918]/10 flex justify-end">
+                <button type="button" onclick="closeModal()" class="py-2.5 px-6 bg-[#1A1918] text-white font-bold text-[15px] rounded-lg hover:bg-[#333230] cursor-pointer">닫기</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 이벤트 핸들러 함수들
+      function goToStep(step) {
+        state.currentStep = step;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        renderApp();
+      }
+
+      function updateForm(field, value) {
+        state.formData[field] = value;
+        renderApp();
+      }
+
+      function updateSize(field, val) {
+        state.formData[field] = Math.max(0, parseInt(val, 10) || 0);
+        renderApp();
+      }
+
+      function toggleFaq(key) {
+        state.faqs[key] = !state.faqs[key];
+        renderApp();
+      }
+
+      function selectTemplate(id) {
+        state.formData.selectedTemplateId = id;
+        renderApp();
+      }
+
+      function selectInstallation(type) {
+        state.formData.installationType = type;
+        if (type === 'outdoor') {
+          // 실외 설치 시 사각각목이나 납작밴드가 아니면 사각각목으로 기본 선택
+          if (state.formData.finishMethod !== 'wood_rope' && state.formData.finishMethod !== 'flat_band') {
+            state.formData.finishMethod = 'wood_rope';
+          }
+        }
+        renderApp();
+      }
+
+      function selectAddBanner(need) {
+        state.formData.addBanner = need;
+        if (!need) state.formData.bannerStandType = 'none';
+        renderApp();
+      }
+
+      function openModal(modalType) {
+        state.activeModal = modalType;
+        renderModal();
+      }
+
+      function closeModal() {
+        state.activeModal = null;
+        renderModal();
+      }
+
+      function resetAll() {
+        state.currentStep = 0;
+        state.formData = {
+          widthMm: 5000,
+          heightMm: 900,
+          eventDate: defaultDateStr,
+          eventTime: '12:30',
+          isUrgent: false,
+          deliveryMethod: 'pickup',
+          selectedTemplateId: 1,
+          groomName: '김민준',
+          brideName: '이지은',
+          weddingHall: '그랜드 앰배서더 서울 블리스홀',
+          installationType: null,
+          finishMethod: null,
+          addBanner: null,
+          bannerStandType: 'none'
+        };
+        state.activeModal = null;
+        renderApp();
+      }
+
+      function copyQuote() {
+        const remaining = calculateRemainingDays(state.formData.eventDate, state.formData.eventTime);
+        const quote = calculateQuote();
+        const selectedTmpl = TEMPLATES.find(t => t.id === state.formData.selectedTemplateId) || TEMPLATES[0];
+        const selectedFinish = FINISH_METHODS.find(f => f.id === state.formData.finishMethod) || FINISH_METHODS[0];
+
+        let specialNotes = '';
+        if (state.formData.isUrgent || state.formData.finishMethod === 'flat_band' || state.formData.deliveryMethod === 'quick') {
+          specialNotes = `\n================================\n※ [특이사항]`;
+          if (state.formData.isUrgent) {
+            specialNotes += `\n★ 긴급제작요청: 행사 일정이 촉박하여 담당자 제작일정 확인 및 급행 추가금 협의가 필요합니다.`;
+          }
+          if (state.formData.finishMethod === 'flat_band') {
+            specialNotes += `\n★ 밴드마감: 고강도 납작밴드 덧댐 특수 가공 방식으로 담당자와 별도 단가 상담이 필요합니다.`;
+          }
+          if (state.formData.deliveryMethod === 'quick') {
+            specialNotes += `\n★ 퀵배송: 착불 또는 거리별 퀵배송 비용이 별도로 발생합니다 (견적서 금액에 미포함).`;
+          }
+        }
+
+        const deliveryText =
+          state.formData.deliveryMethod === 'pickup'
+            ? '직접수령 (매장 방문 / 0원)'
+            : state.formData.deliveryMethod === 'parcel'
+            ? '택배배송 (5일 소요 / +6,000원)'
+            : '퀵배송 (별도 요금 추가 / 퀵배송 미포함)';
+
+        const text = `[탐모라 웨딩 현수막 & 배너 견적서]
+--------------------------------
+1. 현수막 규격: ${state.formData.widthMm}mm × ${state.formData.heightMm}mm (${quote.widthM}m × ${quote.heightM}m)
+2. 행사 예정일: ${state.formData.eventDate} ${state.formData.eventTime} (${remaining.dDayText})
+3. 긴급 제작 요청: ${state.formData.isUrgent ? '신청함 (추가금/일정 확인 필요)' : '일반 일정'}
+4. 템플릿: ${selectedTmpl.title}
+5. 설치 환경: ${state.formData.installationType === 'indoor' ? '실내 설치' : '실외 설치'}
+6. 마감 방법: ${selectedFinish.name} (${selectedFinish.priceDisplay})
+7. 스탠딩 배너: ${state.formData.addBanner ? `신청 (${state.formData.bannerStandType === 'none' ? '출력물만 51,000원' : state.formData.bannerStandType === 'indoor' ? '실내 배너대 포함 73,000원' : '실외 물통 배너대 포함 93,000원'})` : '미신청'}
+8. 수령 방법: ${deliveryText}
+--------------------------------
+■ 현수막 기본금: ${formatPrice(quote.bannerBasePrice)}
+■ 마감 추가금: ${formatPrice(quote.finishCost)}${quote.hasSpecialInquiry ? ' (별도 문의)' : ''}
+■ 배너 추가금: ${formatPrice(quote.bannerTotalAddon)}
+■ 배송비: ${state.formData.deliveryMethod === 'parcel' ? '6,000원' : state.formData.deliveryMethod === 'quick' ? '별도 추가 (미포함)' : '0원 (직접수령)'}
+================================
+★ 최종 예상 견적: ${formatPrice(quote.totalPrice)}${quote.hasSpecialInquiry ? ' + 납작밴드 별도상담' : ''}${quote.isQuickDelivery ? ' (퀵배송 미포함)' : ''}${specialNotes}
+`;
+
+        navigator.clipboard.writeText(text).then(() => {
+          state.copySuccess = true;
+          renderApp();
+          setTimeout(() => {
+            state.copySuccess = false;
+            renderApp();
+          }, 4500);
+        });
+      }
+
+      // 최초 실행
+      document.addEventListener('DOMContentLoaded', () => {
+        renderApp();
+      });
+      // 즉시 실행 (DOM이 이미 로드된 경우)
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        renderApp();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --ink: #1A1918;
+  --accent: #A64B5A;
+  --ink-faint: rgba(26, 25, 24, 0.1);
+  --ink-medium: rgba(26, 25, 24, 0.6);
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-mono-space {
+  font-family: 'Space Mono', 'Courier New', monospace;
+}
+
+/* Custom scrollbars for clean studio feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 25, 24, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 25, 24, 0.4);
+}

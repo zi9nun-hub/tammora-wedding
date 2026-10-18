@@ -1,0 +1,6 @@
+{
+  "name": "웨딩 현수막 견적 계산기 & 미리보기",
+  "description": "탐모라 웨딩 현수막 사이즈별 자동 견적 계산 및 21종 디자인 템플릿, 마감 방식, 스탠딩 배너 추가 옵션 실시간 미리보기",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
